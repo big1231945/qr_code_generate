@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-27 00:41:59.630584",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company_name",
+  "name_surename",
+  "email_address",
+  "telephone_no",
+  "qr_img",
+  "qr_code",
+  "card"
+ ],
+ "fields": [
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "name_surename",
+   "fieldtype": "Data",
+   "label": "Name Surename"
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "label": "E-mail Address"
+  },
+  {
+   "fieldname": "telephone_no",
+   "fieldtype": "Data",
+   "label": "Telephone No."
+  },
+  {
+   "fieldname": "qr_img",
+   "fieldtype": "Image",
+   "label": "QR Img",
+   "options": "qr_code"
+  },
+  {
+   "fieldname": "qr_code",
+   "fieldtype": "Small Text",
+   "label": "QR Code"
+  },
+  {
+   "fieldname": "card",
+   "fieldtype": "Attach Image",
+   "label": "Card "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-08-28 16:23:03.458357",
+ "modified_by": "Administrator",
+ "module": "QR Code User Generate",
+ "name": "QR Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

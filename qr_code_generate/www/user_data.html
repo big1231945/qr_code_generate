@@ -1,0 +1,131 @@
+<!-- user_data.html -->
+{% extends "templates/web.html" %}
+
+{% block title %}{{ _("Contact Information") }}{% endblock %}
+
+{% block page_content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Information</title>
+    <!-- เรียกใช้ Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- เพิ่ม CSS สำหรับปรับแต่งเพิ่มเติม -->
+    <style>
+        body {
+            background-color: #ffffff; /* สีพื้นหลังของหน้า */
+            /* font-family: 'Arial', sans-serif; */
+        }
+
+        .card {
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเพื่อความโดดเด่น */
+            background: linear-gradient(145deg, #d1d8e0, #ffffff); /* สีพื้นหลังการ์ดแบบ gradient */
+            transition: transform 0.5s; /* เพิ่มเอฟเฟกต์การเคลื่อนไหวเมื่อวางเมาส์ */
+        }
+
+        .card:hover {
+            transform: scale(1.02); /* ขยายขนาดการ์ดเมื่อวางเมาส์ */
+        }
+
+        .card-header {
+            background-color: #007bff; /* สีพื้นหลังหัวการ์ด */
+            color: white; /* สีตัวอักษรหัวการ์ด */
+            font-weight: bold;
+            text-align: center;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            padding: 1.5rem;
+        }
+
+        .card-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .card-title {
+            color: #333;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 1em;
+        }
+
+        .card-text {
+            color: #555;
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        .highlight {
+            background-color: #f1f8ff; /* สีพื้นหลังไฮไลต์ */
+            padding: 15px;
+            border-radius: 8px;
+            margin: 0.5em 0;
+        }
+
+        .btn-custom {
+            background-color: #ff6f61; /* สีปุ่มที่กำหนดเอง */
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-custom:hover {
+            background-color: #e65a50; /* สีปุ่มเมื่อ hover */
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                Contact Information
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" id="name_surename"></h5>
+                <p class="card-text" id="company_name"></p>
+                <p class="card-text" id="email_address"></p>
+                <!-- <p class="card-text" id="telephone_no"></p> -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // ตัวอย่างการดึงข้อมูลจาก API
+        async function fetchData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const id = urlParams.get('id');
+            console.log(name);
+            let response = await fetch(`/api/method/qr_code_generate.qr_code_user_generate.doctype.qr_user.qr_user.get_doctype_data?name=${name}&id=${id}`);
+            if (response.ok) {
+                let data = await response.json();
+                console.log("data " + data.company_name);
+                // console.log(data);
+                document.getElementById('name_surename').innerText = data.message.name_surename;
+                document.getElementById('company_name').innerText = data.message.company_name;
+                document.getElementById('email_address').innerText = `Email: ${data.message.email_address}`;
+                // document.getElementById('telephone_no').innerText = `Tel. ${data.message.telephone_no}`;
+            } else {
+                document.getElementById('company_name').innerText = 'Error fetching data';
+                document.getElementById('name_surename').innerText = '';
+                document.getElementById('email_address').innerText = '';
+                // document.getElementById('telephone_no').innerText = '';
+            }
+        }
+
+        // ดึงข้อมูลเมื่อโหลดหน้า
+        fetchData();
+    </script>
+
+</body>
+
+
+{% endblock %}
