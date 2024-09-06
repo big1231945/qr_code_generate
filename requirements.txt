@@ -1,0 +1,2 @@
+-e git+https://github.com/big1231945/qr_code_generate.git@533d56def340db7afeebebed318475b9f57d2e94#egg=qr_code_generate
+qrcode==7.4.2
